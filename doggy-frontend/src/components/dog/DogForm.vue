@@ -92,6 +92,9 @@ import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { FormMode } from "@/types/Form";
 import { Breed } from "@/types/Breeds";
+import { NotificationType } from "@/types/Notifications";
+import { EventType } from "@/types/Event";
+import emitter from "@/main";
 
 export default defineComponent({
 
@@ -136,7 +139,11 @@ export default defineComponent({
                 this.breeds = response.data.breeds
                 this.initForm()
             })
-            .catch(() => console.log('todo'))
+            .catch(() => emitter.emit(EventType.DISPLAY_NOTIFICATION, {
+                            message: 'Something went wrong',
+                            type: NotificationType.ERROR
+                        }
+                    ))
             return;
         }
 
@@ -145,8 +152,11 @@ export default defineComponent({
                 .then((response) => {
                     this.breeds = response.data.breeds
                 })
-                .catch((response) => {
-
+                .catch(() => {
+                    emitter.emit(EventType.DISPLAY_NOTIFICATION, {
+                            message: 'Something went wrong',
+                            type: NotificationType.ERROR
+                        })
                 })
         }
         
@@ -162,8 +172,18 @@ export default defineComponent({
 
             if(this.mode === FormMode.EDIT) {
                 DogService.update(this.dog.id, formData)
-                    .then((response) => console.log(response))
-                    .catch(() => 'todo')
+                    .then((response) => {
+                        emitter.emit(EventType.DISPLAY_NOTIFICATION, {
+                            message: 'Saved successfully',
+                            type: NotificationType.SUCCESS
+                        })
+                    })
+                    .catch(() => {
+                        emitter.emit(EventType.DISPLAY_NOTIFICATION, {
+                            message: 'Something went wrong',
+                            type: NotificationType.ERROR
+                        })
+                    })
                 return;
             }
 
@@ -177,7 +197,12 @@ export default defineComponent({
                             }
                         })
                     })
-                    .catch(() => 'todo')
+                    .catch(() => {
+                        emitter.emit(EventType.DISPLAY_NOTIFICATION, {
+                            message: 'Something went wrong',
+                            type: NotificationType.ERROR
+                        })
+                    })
                 return;
             }
             

@@ -1,5 +1,6 @@
 <template>
 <div>
+  <notification-component/>
   <div v-if="showNavBar" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
 
     <div class="fixed inset-0 bg-gray-900/80"></div>
@@ -108,8 +109,13 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue"
+import NotificationComponent from "@/components/general/NotificationComponent.vue";
 
 export default defineComponent({
+
+    components: {
+      NotificationComponent
+    },
 
     data() {
       return {
