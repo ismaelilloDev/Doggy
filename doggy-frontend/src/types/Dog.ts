@@ -1,3 +1,5 @@
+import { Breed } from "./Breeds"
+
 export interface DogResponse {
     dogs: PaginatedDogs
 }
@@ -16,6 +18,13 @@ export interface Dog {
     id: string,
     name: string
     size: string
-    image: string,
+    image: string
     breed_list: string
+    breeds: []
+    color: string
+}
+
+export interface DogDetailResponse {
+    dog: Dog
+    breeds: Breed[]
 }

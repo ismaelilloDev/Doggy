@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('dogs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('born_date');
             $table->string('image')->nullable();
+            $table->string('color');
             $table->enum('size', ['small', 'medium', 'large']);
             $table->timestamps();
         });

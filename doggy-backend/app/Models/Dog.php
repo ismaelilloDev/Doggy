@@ -14,8 +14,9 @@ class Dog extends Model
 
     protected $fillable = [
         'name',
-        'born_date',
         'size',
+        'image',
+        'color'
     ];
 
     protected $appends = [
@@ -27,11 +28,6 @@ class Dog extends Model
         return $this->belongsToMany(Breed::class);
     }
 
-    public function colors(): BelongsToMany
-    {
-        return $this->belongsToMany(Color::class);
-    }
-
     public function scopeSearch($query, $searchTerm)
     {
         return $query->where('name', 'like', '%' . $searchTerm . '%');
@@ -40,7 +36,7 @@ class Dog extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn (string | null $value) => $value? 'todo': Storage::url('dog.png'),
+            get: fn (string | null $value) => $value? Storage::url($value): Storage::url('dog.png'),
         );
     }
 

@@ -1,12 +1,16 @@
 <template>
+    
     <div class="w-full">
-        <table-list 
+        <div class="w-full flex justify-end">
+            <router-link :to="{name: 'dogCreate'}" class="text-white bg-indigo-600 px-2 py-1 rounded font-semibold">Create</router-link>
+        </div>
+        <table-list
             v-if="items" 
             :content="items"
             :headers="headers"
             :entity="'Dogs'"
             :description="'A list of all the dogs.'"
-            :route-name="'dogs'"
+            :route-name="'dogDetail'"
         />
     </div>
 </template>
@@ -42,6 +46,12 @@ export default defineComponent({
                     type: 'text',
                     value: 'breed_list',
                     label: 'breeds',
+                    enableSort: false
+                },
+                {
+                    type: 'text',
+                    value: 'color',
+                    label: 'Color',
                     enableSort: false
                 }
             ],
