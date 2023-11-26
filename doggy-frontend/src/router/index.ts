@@ -5,6 +5,7 @@ import DogListView from '@/views/dogs/DogListView.vue'
 import DogDetailView from '@/views/dogs/DogDetailView.vue'
 import DogCreateView from '@/views/dogs/DogCreateView.vue'
 import MedicalVisitsList from '@/views/medicalVisits/MedicalVisitsList.vue'
+import CompaniesLanding from '@/views/landing/CompaniesLanding.vue'
 
 
 
@@ -36,6 +37,11 @@ const routes: Array<RouteRecordRaw> = [
       },
     ]
   },
+  {
+    path: '/landing',
+    name: 'landing',
+    component: CompaniesLanding,
+  }
 ]
 
 const router = createRouter({
