@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
 class Dog extends Model
@@ -26,6 +27,11 @@ class Dog extends Model
     public function breeds(): BelongsToMany
     {
         return $this->belongsToMany(Breed::class);
+    }
+
+    public function medicalVisits(): HasMany
+    {
+        return $this->hasMany(MedicalVisit::class);
     }
 
     public function scopeSearch($query, $searchTerm)

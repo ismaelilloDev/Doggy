@@ -29,7 +29,7 @@
                                 <p v-if="key.type === 'text'">{{ item[key.value] }}</p>
                                 <img v-if="key.type === 'image'" class="h-8 w-8 rounded-full object-cover" :src="item[key.value]"/>
                             </td>
-                            <td>
+                            <td v-if="routeName">
                                 <button @click="navigate(item['id'])" class="px-2 py-1 bg-indigo-600 text-white rounded font-semibold text-sm">See</button>
                             </td>
                         </tr>

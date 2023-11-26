@@ -4,6 +4,7 @@ import AdminView from '@/layouts/AdminView.vue'
 import DogListView from '@/views/dogs/DogListView.vue'
 import DogDetailView from '@/views/dogs/DogDetailView.vue'
 import DogCreateView from '@/views/dogs/DogCreateView.vue'
+import MedicalVisitsList from '@/views/medicalVisits/MedicalVisitsList.vue'
 
 
 
@@ -22,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
         path:'/dogs/:id',
         name: 'dogDetail',
         component: DogDetailView,
+      },
+      {
+        path:'/medical-visits',
+        name: 'medicalVisits',
+        component: MedicalVisitsList,
       },
       {
         path:'/',
