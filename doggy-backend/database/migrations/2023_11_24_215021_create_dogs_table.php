@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('born_date');
+            $table->string('image')->nullable();
             $table->enum('size', ['small', 'medium', 'large']);
             $table->timestamps();
         });
